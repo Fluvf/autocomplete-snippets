@@ -1,29 +1,54 @@
 {
   "name": "autocomplete-snippets",
-  "main": "./lib/autocomplete-snippets",
-  "version": "1.12.1",
+  "version": "2.0.0",
   "description": "Adds snippets to autocomplete+ suggestions",
   "repository": "https://github.com/atom/autocomplete-snippets",
   "license": "MIT",
-  "engines": {
-    "atom": ">=0.174.0 <2.0.0"
+  "main": "./lib/autocomplete-snippets",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint:fix && atom --test spec"
   },
   "dependencies": {},
   "devDependencies": {
-    "coffeelint": "^1.9.7"
+    "@babel/core": "^7.12.9",
+    "@babel/eslint-parser": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-private-methods": "^7.12.1",
+    "standard": "^16.0.3"
   },
-  "providedServices": {
-    "autocomplete.provider": {
-      "versions": {
-        "2.0.0": "provide"
-      }
-    }
+  "engines": {
+    "atom": ">=1.47.0",
+    "node": ">=12.0.0"
   },
   "consumedServices": {
     "snippets": {
       "versions": {
-        "0.1.0": "consumeSnippets"
+        "1.0.0": "snippets"
       }
     }
+  },
+  "providedServices": {
+    "autocomplete.provider": {
+      "versions": {
+        "4.0.0": "provide"
+      }
+    }
+  },
+  "standard": {
+    "parser": "@babel/eslint-parser",
+    "env": {
+      "jasmine": true,
+      "node": true
+    },
+    "ignore": [
+      "spec/fixtures/"
+    ],
+    "globals": [
+      "waitsForPromise",
+      "advanceClock",
+      "atom"
+    ]
   }
 }
